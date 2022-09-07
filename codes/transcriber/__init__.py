@@ -1,10 +1,22 @@
-from datetime import datetime
+from datetime import datetime, timedelta
+
+
+TIME_FORMAT = '%H:%M:%S.%f'
+
+
+
+def _time_str_to_datetime(time_str):
+    return datetime.strptime(time_str, TIME_FORMAT)
+
+
+
+def _shift_time_str(time_str, time_delta: timedelta):
+    dt = _time_str_to_datetime(time_str) + time_delta
+    return datetime.strftime(dt, TIME_FORMAT)
 
 
 
 class Script:
-    TIME_FORMAT = '%H:%M:%S.%f'
-
 
     def __init__(self, idx, t_start, t_end, text):
         self.idx = idx
@@ -24,12 +36,17 @@ class Script:
 
     @property
     def start_time(self):
-        return datetime.strptime(self.t_start, self.TIME_FORMAT)
+        return _time_str_to_datetime(self.t_start)
 
 
     @property
     def end_time(self):
-        return datetime.strptime(self.t_end, self.TIME_FORMAT)
+        return _time_str_to_datetime(self.t_end)
+
+
+    def time_shift(self, time_delta):
+        self.t_start = _shift_time_str(self.t_start, time_delta)
+        self.t_end = _shift_time_str(self.t_end, time_delta)
 
 
     def merge(self, script):
@@ -58,6 +75,12 @@ class SRT:
 
         for i in range(len(self.scripts)):
             self.scripts[i][0] = i + 1
+
+
+    def time_shift(self, time_delta):
+        for i in range(len(self.scripts)):
+            self.scripts[i][1] = _shift_time_str(self.scripts[i][1], time_delta)
+            self.scripts[i][2] = _shift_time_str(self.scripts[i][2], time_delta)
 
 
     def get_script(self, idx, pop = False) -> Script:

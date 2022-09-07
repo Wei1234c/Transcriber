@@ -1,0 +1,935 @@
+1
+00:00:02.048000 --> 00:00:05.351000
+Hello. everyone. Do you like to listen to music?
+
+2
+00:00:05.818000 --> 00:00:09.088000
+Do you want to make your speakers sound better?
+
+3
+00:00:09.488000 --> 00:00:14.694000
+Or do you want to get a pair of better headphones? Well. good speakers can be pricey.
+
+4
+00:00:15.161000 --> 00:00:19.198000
+There are so many headphones in the market-- how can you choose?
+
+5
+00:00:19.799000 --> 00:00:23.869000
+How can we determine if speakers are good or bad?
+
+6
+00:00:25.371000 --> 00:00:28.240000
+Speakers are like singers. Through the
+
+7
+00:00:28.240000 --> 00:00:32.011000
+low. medium and high frequency audio signals a speaker plays.
+
+8
+00:00:32.011000 --> 00:00:36.482000
+we can tell the sound quality of speaker. What does this sound signal contain?
+
+9
+00:00:36.949000 --> 00:00:40.219000
+How should we analyze the sound played by a speaker?
+
+10
+00:00:40.619000 --> 00:00:42.688000
+Can we digitize and visualize it?
+
+11
+00:00:43.122000 --> 00:00:45.591000
+What are the criteria to determine if a speaker is good or bad?
+
+12
+00:00:46.492000 --> 00:00:48.928000
+What is sound. exactly?
+
+13
+00:00:48.928000 --> 00:00:53.032000
+No matter whether you speak. sing or play music on speakers.
+
+14
+00:00:54.233000 --> 00:00:56.869000
+sound consists of multiple frequencies
+
+15
+00:00:57.570000 --> 00:01:00.539000
+and we can analyze the distribution and energy
+
+16
+00:01:01.007000 --> 00:01:03.476000
+of each frequency using a Fourier transform.
+
+17
+00:01:07.680000 --> 00:01:12.251000
+We can pick up sounds with a microphone and then run a Fourier transform
+
+18
+00:01:12.818000 --> 00:01:15.521000
+to analyze the frequency composition of a sound clip.
+
+19
+00:01:16.389000 --> 00:01:21.994000
+For example. we can generate a composite signal consisting of 400Hz and 1000Hz
+
+20
+00:01:23.496000 --> 00:01:25.698000
+Through a Fourier transform.
+
+21
+00:01:25.698000 --> 00:01:31.003000
+we can clearly see the amplitude of both frequencies on the spectrogram.
+
+22
+00:01:31.837000 --> 00:01:34.507000
+We can also create white noise.
+
+23
+00:01:38.511000 --> 00:01:44.383000
+Here. you can see the frequency composition of white noise
+
+24
+00:01:44.884000 --> 00:01:46.852000
+So. what is white noise?
+
+25
+00:01:46.852000 --> 00:01:49.188000
+Based on the frequency energy distribution.
+
+26
+00:01:49.588000 --> 00:01:51.690000
+noises can be categorized into several types
+
+27
+00:01:52.291000 --> 00:01:55.528000
+The characteristic of white noise is that it contains all frequencies.
+
+28
+00:01:56.128000 --> 00:01:58.564000
+and the energy of each frequency is equivalent.
+
+29
+00:01:59.298000 --> 00:02:04.570000
+So we can use white noise to test if sounds are played equally by speakers.
+
+30
+00:02:04.570000 --> 00:02:09.508000
+By playing white noise. we can clearly tell from this spectrogram that
+
+31
+00:02:09.909000 --> 00:02:13.512000
+this speaker sounds bad at high and low frequency sounds.
+
+32
+00:02:13.512000 --> 00:02:16.449000
+This is called the frequency response curve of speaker.
+
+33
+00:02:16.949000 --> 00:02:20.019000
+With this. we can determine the sound characteristics of a speaker
+
+34
+00:02:21.720000 --> 00:02:25.391000
+A good speaker should be like a clear glass
+
+35
+00:02:25.958000 --> 00:02:30.563000
+that can faithfully reveal the original sound quality. So when playing white noise.
+
+36
+00:02:30.563000 --> 00:02:33.833000
+the spectrogram should show a flat line.
+
+37
+00:02:34.934000 --> 00:02:39.472000
+Is there any way we can make this frequency response curve flat?
+
+38
+00:02:40.439000 --> 00:02:42.508000
+Sure we can. We can use an equalizer to do this.
+
+39
+00:02:43.709000 --> 00:02:46.979000
+There are many types of equalizers and one we frequently use is
+
+40
+00:02:46.979000 --> 00:02:48.581000
+a parametric EQ.
+
+41
+00:02:48.581000 --> 00:02:50.583000
+also called PEQ.
+
+42
+00:02:50.583000 --> 00:02:54.587000
+PEQ features 3 parameters. including Center frequency. Q value and Gain.
+
+43
+00:02:56.088000 --> 00:02:58.791000
+First. we need to set the center frequency
+
+44
+00:02:58.791000 --> 00:03:02.962000
+to decide the frequency we want to adjust.
+
+45
+00:03:02.962000 --> 00:03:06.298000
+Second. we set Gain to cut
+
+46
+00:03:07.233000 --> 00:03:08.801000
+or boost the frequency.
+
+47
+00:03:11.370000 --> 00:03:14.607000
+The Q value determines the frequency range affected.
+
+48
+00:03:19.979000 --> 00:03:21.814000
+We can pre-process audio signals
+
+49
+00:03:21.814000 --> 00:03:25.951000
+using an equalizer to complement the sound quality of a speaker.
+
+50
+00:03:26.819000 --> 00:03:30.389000
+So. how can we optimize with an equalizer?
+
+51
+00:03:31.824000 --> 00:03:35.728000
+We can use a SigmaDSP chip to
+
+52
+00:03:35.728000 --> 00:03:40.299000
+run PEQ. On the left is a DSP demo board.
+
+53
+00:03:40.833000 --> 00:03:45.671000
+In the middle. we have a SigmaDSP ADAU1701 chip.
+
+54
+00:03:45.671000 --> 00:03:51.310000
+We can control this DSP chip using the USB to I2C converter on the right.
+
+55
+00:03:52.678000 --> 00:03:56.749000
+First. we generate an audio signal of white noise on the computer.
+
+56
+00:03:57.249000 --> 00:04:02.488000
+then send it to SigmaDSP and process with PEQ.
+
+57
+00:04:02.888000 --> 00:04:05.591000
+The signal is converted to a sound and played by the speaker.
+
+58
+00:04:06.258000 --> 00:04:09.427000
+Then we use a microphone to pick up the sound to return it to the computer
+
+59
+00:04:09.427000 --> 00:04:11.829000
+for a Fourier transform. from which we generate a spectrogram.
+
+60
+00:04:13.199000 --> 00:04:18.270000
+How can we execute PEQ on SigmaDSP?
+
+61
+00:04:19.038000 --> 00:04:21.740000
+First. we need SigmaStudio.
+
+62
+00:04:21.740000 --> 00:04:25.678000
+This is a GUI designed to process signals
+
+63
+00:04:26.278000 --> 00:04:30.950000
+The tree menu on the left provides many DSP related functions.
+
+64
+00:04:31.550000 --> 00:04:34.220000
+For example. if we want to design a PEQ.
+
+65
+00:04:34.720000 --> 00:04:37.323000
+we only need to drag in Input.
+
+66
+00:04:38.791000 --> 00:04:41.160000
+Output.
+
+67
+00:04:41.160000 --> 00:04:43.362000
+put PEQ in between.
+
+68
+00:04:44.430000 --> 00:04:46.198000
+connect with lines.
+
+69
+00:04:49.501000 --> 00:04:52.738000
+then click Compile and Download. There you go!
+
+70
+00:04:53.372000 --> 00:04:58.510000
+Click to open this PEQ and you will see a parameter setting interface.
+
+71
+00:04:59.211000 --> 00:05:03.048000
+The change of PEQ parameters will control a DSP chip in real time.
+
+72
+00:05:04.650000 --> 00:05:09.388000
+We can drag to control the center frequency and gain of PEQ
+
+73
+00:05:09.922000 --> 00:05:12.658000
+to boost or cut the energy of a specific frequency range.
+
+74
+00:05:13.659000 --> 00:05:18.631000
+For example. the frequency response curve of this speaker shows a trough on the right.
+
+75
+00:05:19.198000 --> 00:05:23.235000
+We can boost that to make it level.
+
+76
+00:05:31.410000 --> 00:05:34.313000
+We can also use several PEQs at the same time.
+
+77
+00:05:34.880000 --> 00:05:38.951000
+Each PEQ has its own center frequency. Q value and gain.
+
+78
+00:05:39.318000 --> 00:05:44.256000
+and can be used to fix a frequency response curve showing crests and troughs.
+
+79
+00:05:48.460000 --> 00:05:51.530000
+How does SigmaDSP work?
+
+80
+00:05:52.064000 --> 00:05:54.767000
+Take the most basic function. Mute. for example.
+
+81
+00:05:54.767000 --> 00:05:58.270000
+Mute simply multiplies the input signal by 0 or 1:
+
+82
+00:05:58.270000 --> 00:06:03.208000
+when multiplying by 0. the output is 0. and muted.
+
+83
+00:06:03.876000 --> 00:06:06.779000
+When we click Compile and Download.
+
+84
+00:06:07.279000 --> 00:06:13.185000
+SigmaStudio will send the program and parameters
+
+85
+00:06:13.919000 --> 00:06:18.624000
+to the DSP chip to save in different storage sections.
+
+86
+00:06:21.393000 --> 00:06:24.063000
+In DSP chip's program memory.
+
+87
+00:06:24.930000 --> 00:06:28.334000
+a piece of Mute function code looks like this.
+
+88
+00:06:28.801000 --> 00:06:31.603000
+It needs to access a value at address 0.
+
+89
+00:06:32.071000 --> 00:06:35.274000
+Location 0 refers to the address in parameter RAM.
+
+90
+00:06:35.841000 --> 00:06:40.579000
+We only need to change the value of address 0 in parameter RAM.
+
+91
+00:06:40.979000 --> 00:06:43.849000
+to control Mute using a program.
+
+92
+00:06:45.050000 --> 00:06:47.219000
+In a SigmaDSP project.
+
+93
+00:06:47.219000 --> 00:06:52.391000
+there are many other DSP functions besides Mute.
+
+94
+00:06:52.858000 --> 00:06:55.661000
+How can we know the address of each function
+
+95
+00:06:55.694000 --> 00:06:57.830000
+in parameter RAM?
+
+96
+00:06:59.765000 --> 00:07:02.835000
+The XML file provided by SigmaStudio
+
+97
+00:07:02.835000 --> 00:07:08.307000
+collects the address of all functions in parameter RAM.
+
+98
+00:07:08.340000 --> 00:07:13.379000
+How can we use Python to control a SigmaDSP chip?
+
+99
+00:07:13.779000 --> 00:07:16.348000
+We can write some cells
+
+100
+00:07:16.648000 --> 00:07:19.852000
+to support corresponding functions such as set_mute.
+
+101
+00:07:19.852000 --> 00:07:26.058000
+At the same time. we can inject the corresponding parameter address into this cell.
+
+102
+00:07:26.558000 --> 00:07:29.762000
+Then this cell will keep passing the correct parameter address
+
+103
+00:07:29.795000 --> 00:07:34.366000
+when executing set_mute function.
+
+104
+00:07:34.366000 --> 00:07:36.869000
+and eventually write the data
+
+105
+00:07:37.770000 --> 00:07:39.838000
+into the right address in DSP chip's parameter RAM
+
+106
+00:07:40.239000 --> 00:07:44.109000
+through I2C BUS.
+
+107
+00:07:45.511000 --> 00:07:49.882000
+A more complex process consists of more processing blocks.
+
+108
+00:07:50.382000 --> 00:07:53.118000
+In addition to controlling with Python.
+
+109
+00:07:53.619000 --> 00:07:58.190000
+we can also combine different control modes to write Python functions.
+
+110
+00:07:59.358000 --> 00:08:02.828000
+Eventually. we only need one-liner program to execute complex control.
+
+111
+00:08:04.062000 --> 00:08:05.831000
+So what should we do. specifically?
+
+112
+00:08:05.831000 --> 00:08:09.001000
+First. we need to locate the
+
+113
+00:08:09.568000 --> 00:08:12.905000
+SigmaStudio project XML file and
+
+114
+00:08:12.938000 --> 00:08:17.309000
+function. cell. class and definition file we write for "Factory".
+
+115
+00:08:18.210000 --> 00:08:22.080000
+Then we will generate an "IC". representing
+
+116
+00:08:22.080000 --> 00:08:26.218000
+the content of SigmaStudio project XML file.
+
+117
+00:08:26.552000 --> 00:08:30.088000
+It knows what functions are available and the corresponding addresses
+
+118
+00:08:30.389000 --> 00:08:32.458000
+in parameter RAM.
+
+119
+00:08:33.659000 --> 00:08:35.928000
+Next. Factory will create cells
+
+120
+00:08:35.928000 --> 00:08:38.430000
+for each processing block according to IC. the content of XML file.
+
+121
+00:08:38.430000 --> 00:08:44.169000
+and inject the corresponding address in parameter RAM
+
+122
+00:08:44.570000 --> 00:08:46.438000
+into cells.
+
+123
+00:08:47.439000 --> 00:08:52.244000
+In this way. we can control a DSP chip by cells.
+
+124
+00:08:52.711000 --> 00:08:58.050000
+Moreover. we can combine functions of different cells to execute a complex control procedure.
+
+125
+00:08:59.351000 --> 00:09:02.321000
+With a bit more effort.
+
+126
+00:09:02.721000 --> 00:09:06.258000
+if we add a set of TCP/IP client and server in between.
+
+127
+00:09:06.859000 --> 00:09:11.129000
+we can control remote DSP module using a wireless network.
+
+128
+00:09:12.164000 --> 00:09:17.870000
+What are the benefits of controlling a DSP module using Python and a wireless network?
+
+129
+00:09:18.470000 --> 00:09:22.808000
+First. if the module can be controlled using a wireless network. as long as a network is available.
+
+130
+00:09:23.208000 --> 00:09:28.881000
+we can control all modules. which enables easy configuration and maintenance.
+
+131
+00:09:29.848000 --> 00:09:33.952000
+Second. as we can control DSP module using Python.
+
+132
+00:09:34.453000 --> 00:09:36.922000
+we can combine many complicated functions
+
+133
+00:09:37.389000 --> 00:09:40.492000
+into one single Python function.
+
+134
+00:09:40.993000 --> 00:09:46.431000
+We can control all functions with a single-line command. Moreover. we can control
+
+135
+00:09:46.798000 --> 00:09:50.702000
+many DSP devices simultaneously through a wireless network.
+
+136
+00:09:51.870000 --> 00:09:54.840000
+Third. DSP devices
+
+137
+00:09:54.840000 --> 00:09:59.211000
+usually use microprocessors to control functions and calculate parameters.
+
+138
+00:09:59.878000 --> 00:10:02.014000
+and now we can achieve the same purpose remotely
+
+139
+00:10:02.381000 --> 00:10:05.751000
+using Python.
+
+140
+00:10:06.418000 --> 00:10:10.822000
+This can significantly simplify the internal structure of DSP devices.
+
+141
+00:10:12.357000 --> 00:10:18.363000
+Fourth. DSP devices are often equipped with many buttons and knobs.
+
+142
+00:10:18.764000 --> 00:10:22.901000
+If we can control using software through a network.
+
+143
+00:10:22.901000 --> 00:10:28.740000
+control buttons and knobs are no longer necessary.
+
+144
+00:10:28.941000 --> 00:10:34.780000
+Last. every resource should be accessed or used easily.
+
+145
+00:10:35.414000 --> 00:10:37.749000
+so the controllability of codes or
+
+146
+00:10:38.250000 --> 00:10:41.520000
+accessibility through a wireless network
+
+147
+00:10:42.054000 --> 00:10:43.889000
+ensures further development.
+
+148
+00:10:45.357000 --> 00:10:51.897000
+This is the module I used for experiments. On the left. we have a ADAU1701 chip.
+
+149
+00:10:51.897000 --> 00:10:55.400000
+a USB to I2C converter in the middle.
+
+150
+00:10:55.400000 --> 00:10:57.903000
+and a TCP/IP server on the right
+
+151
+00:10:58.570000 --> 00:11:01.139000
+The port at the bottom is for input. and the one on top is for output
+
+152
+00:11:02.641000 --> 00:11:05.611000
+With this kit. we can experiment with many applications.
+
+153
+00:11:06.044000 --> 00:11:07.913000
+such as AutoEQ.
+
+154
+00:11:07.913000 --> 00:11:13.318000
+AutoEQ optimizes the frequency response of speaker using a program.
+
+155
+00:11:15.120000 --> 00:11:18.590000
+This combination module is powered by a power bank.
+
+156
+00:11:19.558000 --> 00:11:22.928000
+The output signal is connected to a small amplifier
+
+157
+00:11:23.629000 --> 00:11:26.131000
+to generate sound through two speakers.
+
+158
+00:11:27.599000 --> 00:11:29.668000
+Here is the whole work flow:
+
+159
+00:11:29.668000 --> 00:11:33.271000
+First. make the DSP module generate a white noise signal
+
+160
+00:11:33.271000 --> 00:11:37.542000
+through the computer. After the speakers sound.
+
+161
+00:11:37.909000 --> 00:11:41.380000
+pick up sounds with the microphone and analyze with the computer.
+
+162
+00:11:41.780000 --> 00:11:44.082000
+which calculates the required PEQ parameters.
+
+163
+00:11:44.549000 --> 00:11:48.020000
+Then. configure on the DSP module through the wireless network.
+
+164
+00:11:49.588000 --> 00:11:52.791000
+The computer picks up and analyzes sounds and
+
+165
+00:11:53.191000 --> 00:11:56.962000
+sends the calculated parameters to a remote DSP module through the wireless network.
+
+166
+00:11:57.429000 --> 00:11:59.831000
+In this way. we can make speakers sound better.
+
+167
+00:12:00.899000 --> 00:12:04.269000
+In the past. the frequency response required manual adjustment.
+
+168
+00:12:04.770000 --> 00:12:08.240000
+Now. automatic optimization can be achieved remotely using a program.
+
+169
+00:12:08.940000 --> 00:12:12.210000
+First. we need to pick up sounds and analyze the spectrum.
+
+170
+00:12:12.778000 --> 00:12:16.982000
+Then we calculate the required PEQ parameters and configure the remote DSP module
+
+171
+00:12:16.982000 --> 00:12:21.720000
+through the network. In this way. we can correct the frequency response of speakers
+
+172
+00:12:27.092000 --> 00:12:29.461000
+These two graphs shows the comparison
+
+173
+00:12:29.461000 --> 00:12:33.498000
+before and after AutoEQ; the results are impressive.
+
+174
+00:12:35.701000 --> 00:12:39.271000
+During the process. to optimize PEQ parameters.
+
+175
+00:12:40.038000 --> 00:12:43.508000
+I used a Python module written by Jaakko Pasanen.
+
+176
+00:12:44.509000 --> 00:12:45.911000
+The principle is
+
+177
+00:12:46.211000 --> 00:12:48.880000
+to set the center frequency of each PEQ
+
+178
+00:12:49.147000 --> 00:12:52.517000
+according to crests and troughs in the frequency response
+
+179
+00:12:52.517000 --> 00:12:55.520000
+based on the minimum mean square error of predicted
+
+180
+00:12:55.520000 --> 00:12:59.524000
+and target response curves. optimized Q value and gain
+
+181
+00:12:59.524000 --> 00:13:04.129000
+of each PEQ by gradient descent.
+
+182
+00:13:05.230000 --> 00:13:07.299000
+Take a 2-channel speaker for example:
+
+183
+00:13:07.599000 --> 00:13:11.570000
+to get the optimal sound quality. besides adjusting the frequency response.
+
+184
+00:13:12.003000 --> 00:13:14.539000
+we also need to take care of the delay of both speakers
+
+185
+00:13:16.541000 --> 00:13:19.044000
+A signal is split into two
+
+186
+00:13:19.111000 --> 00:13:23.882000
+to sound from left and right speakers; however. the distances to the audience are different.
+
+187
+00:13:24.316000 --> 00:13:29.054000
+If we want sounds from both speakers to reach the audience at the same time.
+
+188
+00:13:29.554000 --> 00:13:32.190000
+then we need to delay the signal
+
+189
+00:13:32.457000 --> 00:13:33.558000
+of one speaker.
+
+190
+00:13:37.729000 --> 00:13:40.599000
+From the graph. we can see the red signal travels faster than the green one.
+
+191
+00:13:41.099000 --> 00:13:44.903000
+But how can we decide how much we should delay the red signal?
+
+192
+00:13:45.871000 --> 00:13:48.573000
+We can invert the red signal
+
+193
+00:13:50.342000 --> 00:13:52.711000
+When the delay is optimized.
+
+194
+00:13:52.711000 --> 00:13:57.949000
+2 signals will be offset at the utmost to reach the lowest synthesized sound pressure.
+
+195
+00:13:58.750000 --> 00:14:01.219000
+So we only need to fine-tune the delay of either signal.
+
+196
+00:14:01.653000 --> 00:14:05.590000
+The delay is optimized when we get the lowest synthesized sound pressure.
+
+197
+00:14:13.899000 --> 00:14:16.601000
+The left graph shows the relationship
+
+198
+00:14:16.601000 --> 00:14:19.938000
+of delay and synthesized sound pressure when measuring from a distance close to a pair of Bluetooth speakers
+
+199
+00:14:21.039000 --> 00:14:24.910000
+The right graph shows the result when measuring a pair of bookshelf speakers two meters away.
+
+200
+00:14:26.211000 --> 00:14:29.848000
+As the distances from the left and right speaker to the audience are different.
+
+201
+00:14:30.248000 --> 00:14:34.319000
+besides the delay. we also need to optimize the volume.
+
+202
+00:14:35.420000 --> 00:14:40.192000
+The mechanism we apply here is very simple. Make each speaker sound white noise.
+
+203
+00:14:40.859000 --> 00:14:44.629000
+adjust the volume gain of each speaker after measuring sound pressure.
+
+204
+00:14:44.629000 --> 00:14:49.134000
+and finally. make sure the volume from each speaker sounds the same to the audience.
+
+205
+00:14:56.408000 --> 00:15:00.145000
+Besides flattening the frequency response curve of a speaker.
+
+206
+00:15:00.145000 --> 00:15:03.448000
+we can design other shapes.
+
+207
+00:15:03.949000 --> 00:15:05.050000
+For example. this curve.
+
+208
+00:15:07.519000 --> 00:15:09.154000
+called the Harman Curve.
+
+209
+00:15:09.154000 --> 00:15:13.558000
+is an optimal sound frequency response that most people like in their headphones.
+
+210
+00:15:14.092000 --> 00:15:16.928000
+according to the research result of Harman International.
+
+211
+00:15:18.029000 --> 00:15:21.099000
+When designing headphones.
+
+212
+00:15:21.533000 --> 00:15:25.403000
+most manufacturers try to make the frequency response conform to Harman Curve as much as possible.
+
+213
+00:15:26.471000 --> 00:15:29.274000
+Similarly. we can implement AutoEQ
+
+214
+00:15:29.641000 --> 00:15:33.411000
+to conform the frequency response of headphones to the Harman Curve.
+
+215
+00:15:34.813000 --> 00:15:39.484000
+First. we need to find the original frequency response of the headphones.
+
+216
+00:15:40.018000 --> 00:15:44.723000
+We can measure with a device like this one.
+
+217
+00:15:44.789000 --> 00:15:48.193000
+Then. we calculate the required PEQ parameters.
+
+218
+00:15:49.461000 --> 00:15:53.031000
+or we can use the database available on the internet.
+
+219
+00:15:53.899000 --> 00:15:56.501000
+An AutoEQ almost identical to the Harman Curve
+
+220
+00:15:57.102000 --> 00:16:00.171000
+for most headphones in the market is already available.
+
+221
+00:16:00.639000 --> 00:16:04.209000
+as well as the required PEQ parameters.
+
+222
+00:16:05.110000 --> 00:16:08.580000
+With these parameters. we can adjust
+
+223
+00:16:08.580000 --> 00:16:09.714000
+the frequency response through the hardware DSP.
+
+224
+00:16:09.714000 --> 00:16:16.888000
+like a SigmaDSP chip.
+
+225
+00:16:17.289000 --> 00:16:22.394000
+to correct the frequency response.
+
+226
+00:16:23.728000 --> 00:16:24.529000
+We can also
+
+227
+00:16:24.529000 --> 00:16:27.933000
+sculpt the frequency response curve into other shapes.
+
+228
+00:16:28.533000 --> 00:16:31.202000
+like the frequency response curve of other headphones.
+
+229
+00:16:32.304000 --> 00:16:35.040000
+As long as we know the frequency response of both.
+
+230
+00:16:35.440000 --> 00:16:40.412000
+we can generate the required PEQ parameters through AutoEQ
+
+231
+00:16:40.879000 --> 00:16:43.949000
+and make our headphones sound like the other one.
+
+232
+00:16:45.984000 --> 00:16:47.252000
+Here. I want to share a tool
+
+233
+00:16:47.252000 --> 00:16:52.257000
+to calculate the PEQ parameters required for frequency response conversion.
+
+234
+00:16:54.092000 --> 00:16:59.898000
+I am Wei Lin and I hope you find the content I shared today fun and interesting. Thank you for your time.
